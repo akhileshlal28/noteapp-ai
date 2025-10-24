@@ -11,7 +11,7 @@ const MainDashboard = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:3000/api/notes", {
+    fetch("https://noteapp-ai.onrender.com/api/notes", {
       headers: {
         "Content-Type": "application/json",
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -44,7 +44,7 @@ const MainDashboard = () => {
   const pinnedNotes = (_id) => {
     const note = notes.find((n) => n._id === _id);
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:3000/api/notes/${_id}`, {
+    fetch(`https://noteapp-ai.onrender.com/api/notes/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const MainDashboard = () => {
   const favouriteNotes = (_id) => {
     const note = notes.find((n) => n._id === _id);
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:3000/api/notes/${_id}`, {
+    fetch(`https://noteapp-ai.onrender.com/api/notes/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const MainDashboard = () => {
 
   const addNote = (newNote) => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:3000/api/notes", {
+    fetch("https://noteapp-ai.onrender.com/api/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

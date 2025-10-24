@@ -36,7 +36,7 @@ const Notemodal = ({ note, onClose, setNotes, addNote }) => {
       } else {
         // fallback: if addNote not provided, do authorized POST here
         const token = localStorage.getItem("token");
-        fetch("http://localhost:3000/api/notes", {
+        fetch("https://noteapp-ai.onrender.com/api/notes", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const Notemodal = ({ note, onClose, setNotes, addNote }) => {
     } else {
       // editing existing note: perform PUT with auth header
       const token = localStorage.getItem("token");
-      fetch(`http://localhost:3000/api/notes/${note._id}`, {
+      fetch(`https://noteapp-ai.onrender.com/api/notes/${note._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -85,19 +85,22 @@ const Notemodal = ({ note, onClose, setNotes, addNote }) => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(`http://localhost:3000/api/notes/${note._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify({
-          title: editTitle,
-          content: editContent,
-          pinned: note.pinned,
-          favourite: note.favourite,
-        }),
-      });
+      const res = await fetch(
+        `https://noteapp-ai.onrender.com/api/notes/${note._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: JSON.stringify({
+            title: editTitle,
+            content: editContent,
+            pinned: note.pinned,
+            favourite: note.favourite,
+          }),
+        }
+      );
 
       const data = await res.json().catch(() => ({}));
 
@@ -121,13 +124,16 @@ const Notemodal = ({ note, onClose, setNotes, addNote }) => {
     if (!note) return;
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:3000/api/notes/${note._id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-      });
+      const res = await fetch(
+        `https://noteapp-ai.onrender.com/api/notes/${note._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
+      );
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
         console.error("Delete failed", res.status, err);
@@ -153,11 +159,14 @@ const Notemodal = ({ note, onClose, setNotes, addNote }) => {
     console.log("Text sent for summarization:", textToSummarize);
 
     try {
-      const response = await fetch("http://localhost:3000/api/ai/summarize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: textToSummarize }),
-      });
+      const response = await fetch(
+        "https://noteapp-ai.onrender.com/api/ai/summarize",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: textToSummarize }),
+        }
+      );
       const data = await response.json();
       if (response.ok) {
         setAiSummary(data.summary);

@@ -18,7 +18,7 @@ const FavouriteNote = ({ notes, setNotes }) => {
 
   const favouriteNotes = (_id) => {
     const note = notes.find((n) => n._id === _id);
-    fetch(`http://localhost:3000/api/notes/${_id}`, {
+    fetch(`hhttps://noteapp-ai.onrender.com/api/notes/${_id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...note, favourite: !note.favourite }),

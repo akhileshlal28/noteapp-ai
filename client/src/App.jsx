@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (!token) return;
-    fetch("http://localhost:3000/api/notes", {
+    fetch("https://noteapp-ai.onrender.com/api/notes", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
