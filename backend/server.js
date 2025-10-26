@@ -20,12 +20,13 @@ app.use(
   })
 );
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use("/api/notes", router);
 app.use("/api/ai", aiRouter);
 app.use("/api/auth", authRoutes);
