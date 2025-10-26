@@ -45,7 +45,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-semibold mb-6 text-center">Signup</h2>
 
@@ -58,7 +58,8 @@ const Signup = () => {
               placeholder="Name"
               value={formData.name}
               onChange={handleChange}
-              className="border p-2 rounded"
+              className="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
+              required
             />
           </div>
 
@@ -70,7 +71,8 @@ const Signup = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              className="border p-2 rounded"
+              className="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
+              required
             />
           </div>
 
@@ -82,13 +84,14 @@ const Signup = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleChange}
-              className="border p-2 rounded"
+              className="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
+              required
             />
           </div>
 
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="bg-blue-500 w-full text-white py-2 rounded hover:bg-blue-600"
           >
             Sign Up
           </button>
@@ -103,7 +106,7 @@ const Signup = () => {
             className="text-indigo-600 cursor-pointer hover:underline"
             onClick={() => navigate("/login")}
           >
-            Login in
+            Log in
           </span>
         </p>
       </div>
